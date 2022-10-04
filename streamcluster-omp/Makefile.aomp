@@ -5,7 +5,7 @@ DEVICE      = gpu
 
 
 # Standard flags
-CFLAGS := -std=c++14 -Wall #-DPROFILE_TMP
+CFLAGS := $(EXTRA_CFLAGS) -std=c++14 -Wall #-DPROFILE_TMP
 
 # Linker flags
 LDFLAGS = 

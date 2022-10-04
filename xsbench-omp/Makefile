@@ -30,7 +30,7 @@ obj = $(source:.c=.o)
 #===============================================================================
 
 # Standard Flags
-CFLAGS := -std=c++14 -Wall -qnextgen -fiopenmp -fopenmp-targets=spir64 -D__STRICT_ANSI__
+CFLAGS := $(EXTRA_CFLAGS) -std=c++14 -Wall -qnextgen -fiopenmp -fopenmp-targets=spir64 -D__STRICT_ANSI__
 
 # Linker Flags
 LDFLAGS = -lm

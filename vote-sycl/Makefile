@@ -32,7 +32,7 @@ obj = $(source:.cpp=.o)
 SUB_GROUP = 32
 
 # Standard Flags
-CFLAGS := -std=c++17 -Wall -I../include -fsycl -I../vote-cuda \
+CFLAGS := $(EXTRA_CFLAGS) -std=c++17 -Wall -I../include -fsycl -I../vote-cuda \
           -DWARP_SIZE=$(SUB_GROUP)
 
 # Linker Flags

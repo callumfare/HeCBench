@@ -30,7 +30,7 @@ obj = $(source:.c=.o)
 #===============================================================================
 
 # Standard Flags
-CFLAGS := -target x86_64-pc-linux-gnu \
+CFLAGS := $(EXTRA_CFLAGS) -target x86_64-pc-linux-gnu \
           -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa \
           -Xopenmp-target=amdgcn-amd-amdhsa \
           -march=$(ARCH)
