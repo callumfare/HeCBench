@@ -10,6 +10,7 @@ class Benchmark:
     def __init__(self, args, name, res_regex, run_args = [], binary = "main", invert = False):
         if name.endswith('sycl'):
             self.MAKE_ARGS = ['GCC_TOOLCHAIN="{}"'.format(args.gcc_toolchain)]
+            self.MAKE_ARGS.append('EXTRA_CFLAGS={}'.format(args.extra_flags))
             if args.sycl_type == 'cuda':
                 self.MAKE_ARGS.append('CUDA=yes')
                 self.MAKE_ARGS.append('CUDA_ARCH=sm_{}'.format(args.nvidia_sm))
@@ -79,6 +80,8 @@ def main():
                         help='AMD Architecture')
     parser.add_argument('--gcc-toolchain', default='',
                         help='GCC toolchain location')
+    parser.add_argument('--extra-flags', default='',
+                        help='Extra compilation flags')
     parser.add_argument('--clean', '-c', action='store_true',
                         help='Clean the builds')
     parser.add_argument('--verbose', '-v', action='store_true',
