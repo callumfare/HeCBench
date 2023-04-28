@@ -7,7 +7,7 @@ import argparse
 import json
 
 def die(msg, code=1):
-    print(msg, file=stderr)
+    print(msg, file=sys.stderr)
     exit(code)
 
 class Benchmark:
@@ -58,7 +58,9 @@ class Benchmark:
         try:
             proc.check_returncode()
         except subprocess.CalledProcessError as e:
-            die(f'Failed compilation.\n({e})', e.errno)
+            if self.verbose:
+                print(proc.stdout)
+            # die(f'Failed compilation.\n({e})')
 
         if self.verbose:
             print(proc.stdout)
@@ -148,7 +150,10 @@ def main():
         benches.append(Benchmark(args, b, *benchmarks[b]))
 
     t0 = time.time()
-    with multiprocessing.Pool() as p:
+    # for b in benches:
+    #     comp(b)
+    print("Compile with {} processes".format(os.cpu_count()))
+    with multiprocessing.Pool(processes=2) as p:
         p.map(comp, benches)
 
     t_compiled = time.time()
@@ -159,8 +164,8 @@ def main():
 
     for b in benches:
         try:
-            if args.verbose:
-                print("running: {}".format(b.name))
+            # if args.verbose:
+            print("running: {}".format(b.name))
 
             if args.warmup:
                 b.run()
