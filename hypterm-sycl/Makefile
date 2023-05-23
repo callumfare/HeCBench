@@ -39,7 +39,7 @@ LDFLAGS =
 LDFLAGS = 
 
 ifeq ($(CUDA), yes)
-  CFLAGS += -fsycl-targets=nvptx64-nvidia-cuda-sycldevice \
+  CFLAGS += -fsycl-targets=nvptx64-nvidia-cuda \
             -Xsycl-target-backend --cuda-gpu-arch=$(CUDA_ARCH) \
             --gcc-toolchain=$(GCC_TOOLCHAIN)
 endif

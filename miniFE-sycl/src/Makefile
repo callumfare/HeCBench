@@ -26,7 +26,7 @@ CPPFLAGS = -I. -I../utils -I../fem $(MINIFE_TYPES) -I../../include/ $(MINIFE_MAT
            -std=c++17 -Wall -fsycl
 
 ifeq ($(CUDA), yes)
-  CPPFLAGS += -fsycl-targets=nvptx64-nvidia-cuda-sycldevice \
+  CPPFLAGS += -fsycl-targets=nvptx64-nvidia-cuda \
               -Xsycl-target-backend --cuda-gpu-arch=$(CUDA_ARCH) \
               --gcc-toolchain=$(GCC_TOOLCHAIN)
 endif
